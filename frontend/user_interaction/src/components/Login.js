@@ -19,10 +19,12 @@ function Login() {
     }
   };
   useEffect(()=>{
-    if(userInfo){
+    if(!userInfo){
+      navigate("/")
+    }else if(userInfo.type==="manufacturer" || userInfo.type==="transporter"){
       navigate("/dashboard");
     }
-  })
+  },[dispatch, navigate, userInfo])
   return (
     <div>
       <form onSubmit={sub}>
