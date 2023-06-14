@@ -11,7 +11,7 @@ const User = require("../modals/userModal");
 
 
 const authUser = asyncHandler(async (req, res) => {
-  const { email, password } = req.body;
+  const { email, password,type } = req.body;
 
   const user = await User.findOne({ email });
 
@@ -20,9 +20,9 @@ const authUser = asyncHandler(async (req, res) => {
       _id: user._id,
       name: user.name,
       email: user.email,
-      photo: user.photo,
-      isAdmin: user.isAdmin,
-      token: generateToken(user._id),
+      type: user.type,
+      address: user.address,
+      token: generateToken(user._id)
     });
   } else {
     res.status(401);

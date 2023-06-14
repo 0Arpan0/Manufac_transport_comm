@@ -1,26 +1,14 @@
 import React from 'react'
 import { useState,useEffect } from 'react'
 import axios from 'axios';
-function ManFac() {
+function ManFac({history}) {
     const [to,setTo]=useState();
     const [from,setFrom]=useState();
     const [quantity,setQuantity]=useState();
     const [address,setAddress]=useState();
     const [transporter,setTransporter]=useState();
     const [user,setUser]=useState([]);
-    const userInfoFromStorage = localStorage.getItem("userInfo")
-    ? JSON.parse(localStorage.getItem("userInfo"))
-    : null;
-    const api=async()=>{
-      const userData = await axios.get(
-        "http://localhost:5000/api/users/alluser"
-      );
-      setUser(userData.data);
-      console.log(userData.data);
-    }
-    useEffect(()=>{
-      api()
-  },[])
+
     const sub=async(e)=>{
         e.preventDefault();
         try {
@@ -31,15 +19,15 @@ function ManFac() {
               },
             };
             const res = await axios.post(
-              `${USER_API}/Login`,
+              "http://localhost:5000/api/users/alluser",
               { to, from,quantity,address,transporter },
               config
             );
       
             localStorage.setItem("userInfo", JSON.stringify(res));
-            history.push("/admin/dashboard");
+            history.push("/dashboard");
           } catch (error) {
-            setError(true);
+            console.log(error);
           }
     }
     return (
