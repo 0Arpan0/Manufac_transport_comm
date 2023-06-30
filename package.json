@@ -20,6 +20,8 @@
     "jsonwebtoken": "^9.0.0",
     "mongoose": "^7.2.2",
     "node-fetch": "^2.6.1",
-    "nodemon": "^2.0.22"
+    "nodemon": "^2.0.22",
+    "redux-thunk": "^2.4.2",
+    "thunk": "0.0.1"
   }
 }

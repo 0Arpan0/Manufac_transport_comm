@@ -4,16 +4,16 @@ import {useSelector,useDispatch} from "react-redux"
 import {userLogin} from "./../actions/userAction"
 import { useNavigate  } from "react-router-dom";
 function Login() {
-  const navigate=useNavigate ();
+  const navigate=useNavigate();
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();
-  const [type, setType] = useState();
+
   const dispatch=useDispatch();
-  const {error,userInfo,loading}=useSelector((state)=>state.userLogin)
+  const {userInfo}=useSelector((state)=>state.userLogin)
   const sub = (e) => {
     try {
       e.preventDefault();   
-      dispatch(userLogin(email,password,type));
+      dispatch(userLogin(email,password));
     } catch (error) {
       console.log(error);
     }

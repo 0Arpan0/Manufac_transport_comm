@@ -69,96 +69,83 @@ const registerUser = asyncHandler(async (req, res) => {
 // @desc    Get user profile
 // @route   GET /api/users/profile
 // @access  Private
-const getUserProfile = asyncHandler(async (req, res) => {
-  console.log(req.user);
-  const user = await User.findById(req.user._id).populate("product");
+// const getUserProfile = asyncHandler(async (req, res) => {
+//   console.log(req.user);
+//   const user = await User.findById(req.user._id).populate("product");
 
-  if (user) {
-    res.json({
-      _id: user._id,
-      name: user.name,
-      photo: user.photo,
-      email: user.email,
-    });
-  } else {
-    res.status(404);
-    throw new Error("User not found");
-  }
-});
-const getUserById = asyncHandler(async (req, res) => {
-  const user = await User.findById(req.params.id);
+//   if (user) {
+//     res.json({
+//       _id: user._id,
+//       name: user.name,
+//       photo: user.photo,
+//       email: user.email,
+//     });
+//   } else {
+//     res.status(404);
+//     throw new Error("User not found");
+//   }
+// });
+// const getUserById = asyncHandler(async (req, res) => {
+//   const user = await User.findById(req.params.id);
 
-  if (user) {
-    res.json(user);
-  } else {
-    res.status(404);
-    throw new Error("User not found");
-  }
-});
+//   if (user) {
+//     res.json(user);
+//   } else {
+//     res.status(404);
+//     throw new Error("User not found");
+//   }
+// });
 
-const getUserBySearch = asyncHandler(async (req, res) => {
-  const keyword = req.query.keyword
-    ? {
-        name: {
-          $regex: req.query.keyword,
-          $options: "i",
-        },
-      }
-    : {};
+// const getUserBySearch = asyncHandler(async (req, res) => {
+//   const keyword = req.query.keyword
+//     ? {
+//         name: {
+//           $regex: req.query.keyword,
+//           $options: "i",
+//         },
+//       }
+//     : {};
 
-  const user = await User.find({ ...keyword })
-    .sort({ name: -1 })
-    .limit(5);
-  res.json(user);
-});
-const getAllUser = asyncHandler(async (req, res) => {
-  const user = await User.find({});
-  res.json(user); 
-});
+//   const user = await User.find({ ...keyword })
+//     .sort({ name: -1 })
+//     .limit(5);
+//   res.json(user);
+// });
+// const getAllUser = asyncHandler(async (req, res) => {
+//   const user = await User.find({});
+//   res.json(user); 
+// });
 
-const updateUser = async (req, res) => {
-  const user = await User.findById(req.params.id);
+// const updateUser = async (req, res) => {
+//   const user = await User.findById(req.params.id);
 
-  if (user) {
-    user.name = req.body.name || user.name;
-    user.email = req.body.email || user.email;
+//   if (user) {
+//     user.name = req.body.name || user.name;
+//     user.email = req.body.email || user.email;
 
-    const updatedUser = await user.save();
+//     const updatedUser = await user.save();
 
-    res.json({
-      id: updatedUser._id,
-      name: updatedUser.name,
-      email: updatedUser.email,
-      token: generateToken(updatedUser._id),
-    });
-  } else {
-    res.status(404);
-    throw new Error("User not found");
-  }
-};
+//     res.json({
+//       id: updatedUser._id,
+//       name: updatedUser.name,
+//       email: updatedUser.email,
+//       token: generateToken(updatedUser._id),
+//     });
+//   } else {
+//     res.status(404);
+//     throw new Error("User not found");
+//   }
+// };
 
-const deleteMultipleUser = async (req, res) => {
-  // try {
-  //   const selectedId = req.query.id;
-  //   const deletedData = await User.deleteMany({ _id: { $all: selectedId } });
-  //   if (deletedData) {
-  //     res.json(`removed ${selectedId}`);
-  //   } else {
-  //     res.json("something went wrong");
-  //   }
-  // } catch (error) {
-  //   res.json(error);
-  // }
-  console.log("hello")
-};
+
 
 module.exports = {
   authUser,
   registerUser,
-  getUserProfile,
-  updateUser,
-  getAllUser,
-  getUserBySearch,
-  deleteMultipleUser,
-  getUserById,
+  // getUserProfile,
+  // updateUser,
+  // getAllUser,
+  // getUserBySearch,
+  // deleteMultipleUser,
+  // getUserById,
 };

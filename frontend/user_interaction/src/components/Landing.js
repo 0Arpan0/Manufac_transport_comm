@@ -1,16 +1,15 @@
 import React, {useEffect} from 'react'
 import { useSelector } from 'react-redux'
+import ManFac from './ManFac'
 
 function Landing() {
     const userLogin = useSelector((state) => state.userLogin)
     const { userInfo } = userLogin
-    
+    console.log(userInfo)
   return (
     <div>
     {userInfo.type==="manufacturer" ? (
-        <div>
-            this is userinfo page            
-        </div>  
+        <ManFac/>
   ):(<div>jhbs</div>)}
   </div>
   )

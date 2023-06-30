@@ -10,10 +10,9 @@ const getmanFac = async (req, res) => {
 
 const createManFac = async (req, res) => {
   try {
-    const {order_id, to, from, quantity, address, transporter} = req.body
+    const {to, from, quantity, address, transporter} = req.body
 
     const manFac = await ManFac.create({
-      order_id,
         to,
         from,
         quantity,
@@ -23,7 +22,6 @@ const createManFac = async (req, res) => {
 
     if (manFac) {
       const manFac = new ManFac({
-        order_id,
         to,
         from,
         quantity,
