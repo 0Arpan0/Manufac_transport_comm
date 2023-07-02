@@ -1,6 +1,7 @@
-import React, {useEffect} from 'react'
+import React from 'react'
 import { useSelector } from 'react-redux'
 import ManFac from './ManFac'
+import Transporter from './Transporter'
 
 function Landing() {
     const userLogin = useSelector((state) => state.userLogin)
@@ -8,9 +9,9 @@ function Landing() {
     console.log(userInfo)
   return (
     <div>
-    {userInfo.type==="manufacturer" ? (
-        <ManFac/>
-  ):(<div>jhbs</div>)}
+    {userInfo.type === "manufacturer" ? (
+      <ManFac/>     
+  ):(<Transporter/>)}
   </div>
   )
 }

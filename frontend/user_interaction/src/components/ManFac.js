@@ -3,38 +3,41 @@ import { useState,useEffect } from 'react'
 import { useDispatch,useSelector } from 'react-redux';
 // import { getManufacturer } from '../actions/manFacAction';
 import { createManufacturer } from '../actions/manFacAction';
+import { getTransporter } from '../actions/transporterAction';
+import { useNavigate  } from "react-router-dom";
+
 
 function ManFac() {
   const userLogin=useSelector((state)=>state.userLogin)
   const {userInfo}=userLogin
+  const Navigate=useNavigate();
     const [to,setTo]=useState();
     const [from,setFrom]=useState();
     const [quantity,setQuantity]=useState("1");
     const [address,setAddress]=useState(userInfo.address);
-    const [transporter,setTransporter]=useState(userInfo.transporter);
+    const [transporters,setTransporter]=useState(userInfo.transporter);
    
     const dispatch=useDispatch();
-    // const manufactureList=useSelector((state)=>state.manfac_list_reducer)
-
-   
+    const transporterLists=useSelector((state)=>state.transporterList)
+    const {transporter}=transporterLists 
     const sub=async(e)=>{
         e.preventDefault();
         try {            
           e.preventDefault();
-          dispatch(createManufacturer(to,from,quantity,address,transporter))          
+          dispatch(createManufacturer(to,from,quantity,address,transporters))          
           } catch (error) {
             console.log(error);
           }
     }
     
-    // useEffect(()=>{
-    //   if(userInfo){
-    //   dispatch(getManufacturer());
-    //   }else{
-    //     Navigate("/login");
-    //   }
-    // },[dispatch,userInfo])
-    // console.log(manFac)
+    useEffect(()=>{
+      if(userInfo){
+      dispatch(getTransporter());
+      }else{
+        Navigate("/login");
+      }
+    },[dispatch,userInfo,Navigate])
+    console.log(transporter)
     return (
     <div>
         <form onSubmit={sub}>
@@ -51,7 +54,7 @@ function ManFac() {
             <label>Address</label>
             <textarea onChange={(e)=>setAddress(e.target.value)} value={address}></textarea>
             <label>Transporter</label>
-            <input onChange={(e)=>setTransporter(e.target.value)} value={transporter}/><br/>
+            <input onChange={(e)=>setTransporter(e.target.value)} value={transporters}/><br/>
             <button type='submit'>Push</button>
         </form>
       

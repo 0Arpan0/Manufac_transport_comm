@@ -3,7 +3,7 @@ const app = express();
 const dotenv = require("dotenv");
 const connectDb = require("./config/db");
 // const path = require("path");
-const manFacRoute = require("./routes/manFacRoutes");
+const OrderRoute = require("./routes/orderRoutes");
 const tranporterRoute = require("./routes/transporterRoutes");
 const userRoutes=require("./routes/userRoutes");
 // const productRoutes = require("./routes/productRoutes");
@@ -20,7 +20,7 @@ connectDb()
 app.use(cors())
 app.use(express.json())
 app.use('/api/users', userRoutes)
-app.use('/api/manFac', manFacRoute)
+app.use('/api/order', OrderRoute)
 app.use('/api/tranporter', tranporterRoute)
 // app.use('/api/product', productRoutes)
 // app.use('/api/movie', movieRoutes)

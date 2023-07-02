@@ -3,7 +3,9 @@ const mongoose = require("mongoose");
 const transporterSchema = mongoose.Schema(
   {
     order_id: {
-      type: String,
+      type: mongoose.Schema.Types.ObjectId,
+      required: true,
+      ref: 'Order',
     },    
     price: {
       type: Number,

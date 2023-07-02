@@ -2,8 +2,24 @@ const Transporter = require("../modals/transporterModal");
 
 
 const getTransporter = async (req, res) => {
-  const transporter = await Transporter.find();
-  res.json(transporter);
+  try {
+    const transporter = await Transporter.find({}).populate('order_id');
+    var x;
+    let y=req.user._id.toString();
+    console.log(y);
+    //console.log(transporter.length);
+    for(var i=0;i<transporter.length;i++){
+      x=transporter[i].order_id.user.toString();      
+      console.log(x);
+        if(x==y){
+          res.json(transporter[i])
+        }
+    }
+    //res.json(transporter);
+  } catch (error) {
+    console.log(error);
+  }
+
 };
 
 

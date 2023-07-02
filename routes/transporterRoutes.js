@@ -7,9 +7,9 @@ const {
     createTransporter,
     getTransporterById,
 } = require( '../controller/transportController');
-const {transporter, protect} = require("../middleware/authMiddleware")
+const {protect} = require("../middleware/authMiddleware")
 
 
-router.route('/').post(protect,transporter,createTransporter).get(protect,transporter,getTransporter)
+router.route('/').post(protect,createTransporter).get(protect,getTransporter)
 
 module.exports = router

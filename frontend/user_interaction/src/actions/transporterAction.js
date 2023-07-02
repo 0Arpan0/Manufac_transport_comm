@@ -1,7 +1,7 @@
 import axios from "axios";
-import { MANFAC_LIST, CREATE_MANFAC } from "../constants/manFacConstants";
+import {CREATE_TRANSPORTER, TRASPORTER_LIST } from "../constants/transporterConstant";
 
-export const getManufacturer=()=>async(dispatch,getState)=>{
+export const getTransporter=()=>async(dispatch,getState)=>{
     try {
         const {
             userLogin: { userInfo },
@@ -11,17 +11,17 @@ export const getManufacturer=()=>async(dispatch,getState)=>{
               Authorization: `Bearer ${userInfo.token}`
             }
           }
-        const { data } = await axios.get("http://localhost:5000/api/order",config)
+        const { data } = await axios.get("http://localhost:5000/api/tranporter",config)
         //console.log(data);
         dispatch({
-            type:MANFAC_LIST,
+            type:TRASPORTER_LIST,
             payload:data
         })
     } catch(error) {
         console.log(error)
     }
 }
-export const createManufacturer=(to,from,quantity,address,transporter)=>async(dispatch,getState)=>{
+export const createTransporter=(order_id,price)=>async(dispatch,getState)=>{
     try {
         const {
             userLogin: { userInfo },
@@ -31,10 +31,10 @@ export const createManufacturer=(to,from,quantity,address,transporter)=>async(di
               Authorization: `Bearer ${userInfo.token}`
             }
           }
-        const { data } = await axios.post("http://localhost:5000/api/order",{to,from,quantity,address,transporter},config)
+        const { data } = await axios.post("http://localhost:5000/api/transporter",{order_id,price},config)
         //console.log(data);
         dispatch({
-            type:CREATE_MANFAC,
+            type:CREATE_TRANSPORTER,
             payload:data
         })
     } catch(error) {
