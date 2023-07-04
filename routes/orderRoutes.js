@@ -9,6 +9,6 @@ const {
 const {manFac, protect} = require("../middleware/authMiddleware")
 
 
-router.route('/').post(protect,manFac,createOrder).get(protect,manFac,getOrder)
+router.route('/').post(protect,createOrder).get(protect,getOrder)
 
 module.exports = router

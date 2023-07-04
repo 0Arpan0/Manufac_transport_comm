@@ -57,15 +57,14 @@ function ManFac() {
             <input onChange={(e)=>setTransporter(e.target.value)} value={transporters}/><br/>
             <button type='submit'>Push</button>
         </form>
-      
-      {/* {manFac.map((item)=>(
-        <div>
-        {item.to}
-        {item.from}
-        {item.quantity}
-        {item.address} 
-        </div>
-      ))} */}
+        
+         {transporter.map((item)=>(
+         <div>
+         {item.order_id.address}       
+         {item.price} 
+         </div>
+         ))}
+       
     </div>
   )
 }

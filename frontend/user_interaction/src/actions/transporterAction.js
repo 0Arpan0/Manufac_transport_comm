@@ -1,5 +1,5 @@
 import axios from "axios";
-import {CREATE_TRANSPORTER, TRASPORTER_LIST } from "../constants/transporterConstant";
+import {CREATE_TRANSPORTER, TRANSPORTER_LIST } from "../constants/transporterConstant";
 
 export const getTransporter=()=>async(dispatch,getState)=>{
     try {
@@ -14,7 +14,7 @@ export const getTransporter=()=>async(dispatch,getState)=>{
         const { data } = await axios.get("http://localhost:5000/api/tranporter",config)
         //console.log(data);
         dispatch({
-            type:TRASPORTER_LIST,
+            type:TRANSPORTER_LIST,
             payload:data
         })
     } catch(error) {

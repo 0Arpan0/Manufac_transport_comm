@@ -40,19 +40,30 @@ function ManFac() {
         <form onSubmit={sub}>
             <label>To</label>
             <input onChange={(e)=>setOrder(e.target.value)} value={order}/><br/>
+            
+              <select >
+              <option value="">Please choose the id</option>
+              {manFac.map((item)=>(
+               
+                <option value={item._id}>{item._id}</option>
+                ))}
+              </select>
+           
+            <br/>
             <label>From</label>
             <input onChange={(e)=>setPrice(e.target.value)} value={price}/><br/>
             <button type='submit'>Push</button>
+
         </form>
       
-      {/* {manFac.map((item)=>(
+      {manFac.map((item)=>(
         <div>
         {item.to}
         {item.from}
         {item.quantity}
         {item.address} 
         </div>
-      ))} */}
+      ))}
     </div>
   )
 }

@@ -9,7 +9,7 @@ function Landing() {
     console.log(userInfo)
   return (
     <div>
-    {userInfo.type === "manufacturer" ? (
+    {userInfo.type === "transporter" ? (
       <ManFac/>     
   ):(<Transporter/>)}
   </div>

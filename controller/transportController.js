@@ -1,19 +1,26 @@
 const Transporter = require("../modals/transporterModal");
-
+//const Order=require("../modals/orderModal")
 
 const getTransporter = async (req, res) => {
   try {
     const transporter = await Transporter.find({}).populate('order_id');
     var x;
     let y=req.user._id.toString();
-    console.log(y);
+    let arr = [];
+    //console.log(y);
     //console.log(transporter.length);
+    //const count = await Order.countDocuments();
+    //console.log(count)
     for(var i=0;i<transporter.length;i++){
       x=transporter[i].order_id.user.toString();      
       console.log(x);
         if(x==y){
-          res.json(transporter[i])
+          arr.push(transporter[i])
+          console.log(arr);
         }
+    }
+    for(var i=0;i<transporter.length;i++){
+      res.json(arr)
     }
     //res.json(transporter);
   } catch (error) {

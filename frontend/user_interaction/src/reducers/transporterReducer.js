@@ -1,7 +1,8 @@
-import { CREATE_TRANSPORTER,TRASPORTER_LIST } from "../constants/transporterConstant";
+import { TRANSPORTER_LIST, CREATE_TRANSPORTER } from "../constants/transporterConstant";
 export const transporterListReducer = (state = { transporter: [] }, action) => {
   switch (action.type) {
-    case TRASPORTER_LIST:
+    case TRANSPORTER_LIST:  
+      //console.log("reducer called")   
       return { loading: false, transporter: action.payload };
     default:
       return state;
